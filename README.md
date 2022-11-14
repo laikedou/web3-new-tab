@@ -6,6 +6,8 @@ First, run the development server:
 
 ```bash
 npm run dev
+
+"dev": "next dev --turbo --show-all",
 # or
 yarn dev
 ```

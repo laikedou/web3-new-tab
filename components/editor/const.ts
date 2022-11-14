@@ -1,4 +1,4 @@
-import { NextApiRequest, NextApiResponse } from "next";
+export const defaultCode = `import { NextApiRequest, NextApiResponse } from "next";
 import { ThirdwebStorage } from "@thirdweb-dev/storage";
 import { readFileSync, unlinkSync, writeFileSync } from "fs";
 import formidable, { File, Files } from "formidable";
@@ -6,12 +6,6 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  const saveFile = async (file: File) => {
-    const data = readFileSync(file.filepath);
-    writeFileSync(`./public/${file.originalFilename}`, data);
-    await unlinkSync(file.filepath);
-    return;
-  };
   //这里我们会对参数进行接收
   if (req.method === "POST") {
     //进行文件上传
@@ -47,3 +41,4 @@ export default async function handler(
   console.log(data);
   res.status(200).json(data);
 }
+`;

@@ -6,6 +6,8 @@ import Clock from "../components/clock";
 //最好将样式抽离出来，后面会更好操作
 import { container } from "./styles";
 import NetWork from "#/components/wallet/network";
+import NFTS from "#/components/nfts";
+import Editor from "#/components/editor";
 
 export default function Page() {
   useEffect(() => {}, []);
@@ -24,6 +26,10 @@ export default function Page() {
         <Clock />
         <ConnectButton />
         <NetWork />
+        {/* NFTS */}
+        <NFTS />
+        {/* Editor */}
+        <Editor />
       </Container>
     </>
   );

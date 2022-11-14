@@ -11,8 +11,11 @@ const colors = {
   //   700: "#2a69ac",
   // },
 };
-
-const theme = extendTheme({ colors });
+const config = {
+  initialColorMode: "dark",
+  useSystemColorMode: false,
+};
+const theme = extendTheme({ colors, config });
 
 export default function RootLayout({
   children,

@@ -15,14 +15,18 @@ import {
   DrawerHeader,
   DrawerOverlay,
   Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
   useDisclosure,
   Heading,
   IconButton,
+  FormControl,
+  FormLabel,
+  Input,
+  FormErrorMessage,
+  FormHelperText,
+  Text,
 } from "@chakra-ui/react";
+
+import * as Yup from "yup";
 import { SearchIcon } from "@chakra-ui/icons";
 
 interface MyFormValues {
@@ -44,55 +48,88 @@ const NFTS = (props: Props) => {
       },
     ],
   };
-  function validateName(value) {
-    let error;
-    if (!value) {
-      error = "Name is required";
-    } else if (value.toLowerCase() !== "naruto") {
-      error = "Jeez! You're not a fan 😱";
-    }
-    return error;
-  }
+  const SignupSchema = Yup.object().shape({
+    firstName: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    lastName: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    email: Yup.string().email("Invalid email").required("Required"),
+  });
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <>
-      <Drawer placement={"right"} onClose={onClose} isOpen={isOpen}>
-        <DrawerOverlay />
+      <Drawer placement={"right"} onClose={onClose} isOpen={isOpen} size="lg">
+        <DrawerOverlay backdropFilter="auto" backdropBlur="lg" />
         <DrawerContent>
-          <DrawerHeader borderBottomWidth="1px">Basic Drawer</DrawerHeader>
+          <DrawerHeader borderBottomWidth="1px">
+            <Text
+              bgGradient="linear(to-l, #7928CA, #FF0080)"
+              bgClip="text"
+              fontSize="4xl"
+              fontWeight="extrabold"
+              textAlign={"center"}
+            >
+              Mint NFT
+            </Text>
+          </DrawerHeader>
           <DrawerBody>
             <Formik
               initialValues={initialValues}
+              validationSchema={SignupSchema}
               onSubmit={(values, actions) => {
                 console.log({ values, actions });
-                alert(JSON.stringify(values, null, 2));
                 actions.setSubmitting(false);
               }}
             >
-              {(props) => (
-                <Form>
-                  <Field name="name" validate={validateName}>
-                    {({ field, form }) => (
-                      <FormControl
-                        isInvalid={form.errors.name && form.touched.name}
-                      >
-                        <FormLabel>First name</FormLabel>
-                        <Input {...field} placeholder="name" />
-                        <FormErrorMessage>{form.errors.name}</FormErrorMessage>
-                      </FormControl>
-                    )}
-                  </Field>
-                  <Button
-                    mt={4}
-                    colorScheme="teal"
-                    isLoading={props.isSubmitting}
-                    type="submit"
+              {({ errors }) => (
+                <>
+                  <FormControl
+                    isInvalid={!!errors?.name}
+                    // errortext={errors?.name}
+                    p="4"
+                    isRequired
                   >
-                    Submit
+                    <FormLabel>Email</FormLabel>
+                    <Input type="email" name="email" placeholder="Email" />
+                    <FormErrorMessage>{errors?.name}</FormErrorMessage>
+                    <FormHelperText>
+                      We are obviously giving this straight to Facebook.
+                    </FormHelperText>
+                  </FormControl>
+                  <FormControl
+                    isInvalid={!!errors?.description}
+                    // errortext={errors?.description}
+                    px="4"
+                    pb="4"
+                    isRequired
+                  >
+                    <FormLabel>Password</FormLabel>
+                    <Input
+                      type="password"
+                      placeholder="Password"
+                      name="password"
+                    />
+                    <FormErrorMessage>{errors?.description}</FormErrorMessage>
+                  </FormControl>
+                  <Button
+                    type="submit"
+                    p="4"
+                    mx="4"
+                    mt="6"
+                    w="90%"
+                    colorScheme="blue"
+                    variant="solid"
+                    disabled={!!errors.name || !!errors.description}
+                  >
+                    Login
                   </Button>
-                </Form>
+                </>
               )}
             </Formik>
           </DrawerBody>

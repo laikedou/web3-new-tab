@@ -1,6 +1,11 @@
 "use client";
 import "#/styles/globals.css";
-import { AspectRatio, extendTheme, Portal } from "@chakra-ui/react";
+import {
+  AspectRatio,
+  ColorModeScript,
+  extendTheme,
+  Portal,
+} from "@chakra-ui/react";
 import { ChakraProvider, Image, Box } from "@chakra-ui/react";
 import Script from "next/script";
 import { useRef } from "react";
@@ -11,11 +16,8 @@ const colors = {
   //   700: "#2a69ac",
   // },
 };
-const config = {
-  initialColorMode: "dark",
-  useSystemColorMode: false,
-};
-const theme = extendTheme({ colors, config });
+
+const theme = extendTheme({ colors });
 
 export default function RootLayout({
   children,
@@ -26,6 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <ColorModeScript initialColorMode={"dark"} />
         <Portal containerRef={rootRef}>
           {/* <AspectRatio maxW="full" ratio={4 / 3}>
             <Image

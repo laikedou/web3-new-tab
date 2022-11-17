@@ -32,6 +32,7 @@
     "ethers": "^5.7.2",
     "formik": "^2.2.9",
     "framer-motion": "^6",
+    "json-form-data": "^1.7.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "multer": "^1.4.5-lts.1",

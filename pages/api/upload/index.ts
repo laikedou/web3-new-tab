@@ -11,7 +11,7 @@ handler.use(middleware);
 handler.post(async (req, res) => {
   const storage = new ThirdwebStorage();
   console.log("req.body", req.body);
-  console.log("req.files", req);
+  console.log("req.files", req.file);
   // // Here we get the IPFS URI of where our metadata has been uploaded
   // const uri = await storage.upload(req.body);
   // // This will log a URL like ipfs://QmWgbcjKWCXhaLzMz4gNBxQpAHktQK6MkLvBkKXbsoWEEy/0

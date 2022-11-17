@@ -1,14 +1,19 @@
 "use client";
 import "#/styles/globals.css";
+import "@fontsource/raleway/400.css";
+import "@fontsource/open-sans/700.css";
 import {
   AspectRatio,
   ColorModeScript,
   extendTheme,
   Portal,
 } from "@chakra-ui/react";
+import { useDisclosure } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import { ChakraProvider, Image, Box } from "@chakra-ui/react";
 import Script from "next/script";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+
 const colors = {
   // brand: {
   //   900: "#1a365d",
@@ -17,7 +22,13 @@ const colors = {
   // },
 };
 
-const theme = extendTheme({ colors });
+const theme = extendTheme({
+  colors,
+  fonts: {
+    heading: `'Open Sans', sans-serif`,
+    body: `'Raleway', sans-serif`,
+  },
+});
 
 export default function RootLayout({
   children,
@@ -25,20 +36,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const rootRef = useRef(null);
+  const { getButtonProps, getDisclosureProps, isOpen } = useDisclosure();
+  const [hidden, setHidden] = useState(!isOpen);
   return (
     <html lang="en">
       <body>
         <ColorModeScript initialColorMode={"dark"} />
-        <Portal containerRef={rootRef}>
-          {/* <AspectRatio maxW="full" ratio={4 / 3}>
-            <Image
-              src="https://www4.bing.com//th?id=OHR.YiPeng_ZH-CN0652265903_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=hp"
-              alt="naruto"
-              objectFit="cover"
-              blur={"sm"}
-            />
-          </AspectRatio> */}
-        </Portal>
         <Box ref={rootRef}>
           <ChakraProvider theme={theme}>{children}</ChakraProvider>
         </Box>

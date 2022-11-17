@@ -29,7 +29,7 @@ export default function Page() {
         {/* NFTS */}
         <NFTS />
         {/* Editor */}
-        <Editor />
+        {/* <Editor /> */}
       </Container>
     </>
   );

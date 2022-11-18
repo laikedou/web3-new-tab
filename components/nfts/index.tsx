@@ -73,7 +73,7 @@ const NFTS = (props: Props) => {
         <DrawerContent>
           <DrawerHeader borderBottomWidth="1px">
             <Text
-              bgGradient="linear(to-l, #7928CA, #FF0080)"
+              bgGradient="linear(to-l, #9945FF, #14F195)"
               bgClip="text"
               fontSize="4xl"
               fontWeight="extrabold"
@@ -145,7 +145,7 @@ const NFTS = (props: Props) => {
         </DrawerContent>
       </Drawer>
       <Flex
-        bgGradient="linear(to-l, #7928CA, #FF0080)"
+        bgGradient="linear(to-l, #9945FF, #14F195)"
         padding={20}
         flexDirection="column"
         justifyContent="center"

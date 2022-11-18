@@ -21,7 +21,7 @@ function Clock({}: Props) {
 
   return (
     <Text
-      bgGradient="linear(to-l, #7928CA, #FF0080)"
+      bgGradient="linear(to-l, #9945FF, #14F195)"
       bgClip="text"
       fontSize="6xl"
       fontWeight="extrabold"

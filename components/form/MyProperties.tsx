@@ -27,7 +27,11 @@ const MyProperties = ({ field, form, ...props }: FieldProps) => {
 
         <Grid templateColumns="repeat(5, 1fr)" gap={10}>
           {value.map((v: Properties, key: string) => (
-            <GridItem textAlign={"center"} bgGradient="linear(to-l, #7928CA, #FF0080)" key={key}>
+            <GridItem
+              textAlign={"center"}
+              bgGradient="linear(to-l, #9945FF, #14F195)"
+              key={key}
+            >
               <Text fontSize="sm">{v.name}</Text>
               <Text fontSize="xl">{v.value}</Text>
             </GridItem>

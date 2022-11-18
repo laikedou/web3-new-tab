@@ -2,17 +2,11 @@
 import "#/styles/globals.css";
 import "@fontsource/raleway/400.css";
 import "@fontsource/open-sans/700.css";
-import {
-  AspectRatio,
-  ColorModeScript,
-  extendTheme,
-  Portal,
-} from "@chakra-ui/react";
-import { useDisclosure } from "@chakra-ui/react";
-import { motion } from "framer-motion";
-import { ChakraProvider, Image, Box } from "@chakra-ui/react";
-import Script from "next/script";
-import { useRef, useState } from "react";
+import { ColorModeScript, extendTheme } from "@chakra-ui/react";
+import { ChakraProvider, Box } from "@chakra-ui/react";
+import { useRef } from "react";
+import Header from "#/components/header";
+import Footer from "#/components/footer";
 
 const colors = {
   // brand: {
@@ -36,14 +30,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const rootRef = useRef(null);
-  const { getButtonProps, getDisclosureProps, isOpen } = useDisclosure();
-  const [hidden, setHidden] = useState(!isOpen);
+
   return (
     <html lang="en">
       <body>
         <ColorModeScript initialColorMode={"dark"} />
         <Box ref={rootRef}>
-          <ChakraProvider theme={theme}>{children}</ChakraProvider>
+          <ChakraProvider theme={theme}>
+            <Header></Header>
+            {children}
+            <Footer />
+          </ChakraProvider>
         </Box>
       </body>
     </html>

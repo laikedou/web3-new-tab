@@ -15,7 +15,7 @@ const NetWork: React.FC<any> = (props: Props) => {
   return (
     <>
       <Flex
-        bgGradient="linear(to-l, #7928CA, #FF0080)"
+        bgGradient="linear(to-l, #9945FF, #14F195)"
         padding={20}
         flexDirection="column"
         justifyContent="center"

@@ -7,7 +7,7 @@ import { ChakraProvider, Box } from "@chakra-ui/react";
 import { useRef } from "react";
 import Header from "#/components/header";
 import Footer from "#/components/footer";
-
+import { AnalyticsWrapper } from "./components/analytics";
 const colors = {
   // brand: {
   //   900: "#1a365d",
@@ -42,6 +42,7 @@ export default function RootLayout({
             <Footer />
           </ChakraProvider>
         </Box>
+        <AnalyticsWrapper />
       </body>
     </html>
   );

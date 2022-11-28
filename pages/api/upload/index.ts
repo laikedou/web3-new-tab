@@ -1,6 +1,6 @@
 import { NextApiRequest, NextApiResponse } from "next";
 import nc from "next-connect";
-import middleware from "#/middleware/middleware";
+import middleware from "#/app/middleware/middleware";
 const handler = nc<
   NextApiRequest & { file: Express.Multer.File },
   NextApiResponse

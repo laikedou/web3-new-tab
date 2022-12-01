@@ -1,0 +1,15 @@
+.container {
+  @apply relative flex flex-row items-center justify-center rounded-3xl overflow-hidden;
+}
+
+.next {
+  @apply absolute right-2 top-1/2 transform -translate-y-1/2 z-10;
+}
+
+.prev {
+  @apply absolute left-1 top-1/2 transform -translate-y-1/2 z-10;
+}
+
+.desc {
+  @apply absolute z-10 left-0 top-1/2 p-40 -translate-y-1/2 text-5xl font-extrabold text-center leading-[60px];
+}

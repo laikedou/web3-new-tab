@@ -1,11 +1,15 @@
+"use client";
 import { AnalyticsWrapper } from "./components/analytics";
 import Layout from "#/app/components/layout";
 import ReduxProvider from "./components/reduxprovider";
 import { Lexend } from "@next/font/google";
+import { ThemeProvider } from "next-themes";
+import Script from "next/script";
 import "./styles/globals.css";
-// const lexend = Lexend({
-//   variable: "--font-lexend",
-// });
+const lexend = Lexend({
+  variable: "--font-lexend",
+  subsets: ["latin"],
+});
 export default function RootLayout({
   children,
 }: {
@@ -13,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <title data-rh="true">TypeScript Quick Start | Redux Toolkit</title>
+      <title data-rh="true">polyplace</title>
       <meta
         data-rh="true"
         name="viewport"
@@ -21,9 +25,15 @@ export default function RootLayout({
       ></meta>
       <body>
         <ReduxProvider>
-          <Layout>{children}</Layout>
+          <ThemeProvider attribute="class">
+            <Layout>{children}</Layout>
+          </ThemeProvider>
         </ReduxProvider>
         <AnalyticsWrapper />
+        <Script
+          src="https://kit.fontawesome.com/77a74156e4.js"
+          crossOrigin="anonymous"
+        />
       </body>
     </html>
   );

@@ -1,0 +1,24 @@
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.navs {
+  @apply flex flex-row items-center justify-end gap-5;
+}
+.navs li {
+  @apply text-shadow  transition-all duration-700;
+}
+.navs li.cur {
+  @apply text-shadow;
+}
+.checkbox {
+  @apply opacity-0 absolute;
+}
+.ball {
+  @apply w-4 h-4 absolute bg-white rounded-full top-0 left-[2px] transition-transform duration-300;
+}
+.label {
+  @apply flex flex-row items-center justify-between w-8 h-4 bg-black rounded-2xl p-1 relative  transform scale-150 cursor-pointer;
+}
+.checkbox:checked + .label .ball {
+  transform: translateX(13px);
+}

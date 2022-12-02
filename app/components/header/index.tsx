@@ -16,7 +16,7 @@ const Header = (props: Props) => {
   }, []);
 
   return (
-    <header className="dark:bg-nft-dark fixed w-full z-20  dark:border-nft-black-1 border-b border-nft-gray-1  shadow-md">
+    <header className="dark:bg-nft-dark fixed  bg-white w-full z-20  dark:border-nft-black-1 border-b border-nft-gray-1  shadow-md">
       <div className="w-[1280px] mx-auto py-4 relative flex flex-row">
         <div className="flex flex-row items-center gap-2">
           <motion.div

@@ -1,6 +1,4 @@
 "use client";
-import { useAppDispatch, useAppSelector } from "#/app/hooks";
-import { incremented } from "#/app/store/actions";
 import React from "react";
 import Image from "next/image";
 import styles from "./styles.module.css";
@@ -11,12 +9,10 @@ import Button from "../button";
 type Props = {};
 
 const Footer = (props: Props) => {
-  const dispatch = useAppDispatch();
   const { theme } = useTheme();
-  const count = useAppSelector((state) => state.user.count);
   return (
     <footer className="flex justify-center flex-col border-t dark:border-nft-black-1 border-nft-gray-1 sm:py-8 py-5">
-      <div className="w-full minmd:w-4/5 flex flex-row md:flex-col sm:px-4 px-16">
+      <div className="container flex flex-row md:flex-col sm:px-4 px-16">
         <div className="flex justify-start flex-1 flex-col">
           <div className="flex justify-start cursor-pointer">
             <Link href="/">

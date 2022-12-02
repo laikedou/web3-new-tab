@@ -9,7 +9,7 @@ const nextConfig = {
     ],
   },
   images: {
-    domains: ["polyplace.infura-ipfs.io"],
+    domains: ["polyplace.infura-ipfs.io", "loremflickr.com"],
   },
 };
 

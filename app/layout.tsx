@@ -3,9 +3,11 @@ import { AnalyticsWrapper } from "./components/analytics";
 import Layout from "#/app/components/layout";
 import ReduxProvider from "./components/reduxprovider";
 import { Lexend } from "@next/font/google";
-import { ThemeProvider } from "next-themes";
 import Script from "next/script";
+import { ChakraProvider } from "@chakra-ui/react";
 import "./styles/globals.css";
+import Web3modalprovider from "./components/web3modalprovider";
+
 const lexend = Lexend({
   variable: "--font-lexend",
   subsets: ["latin"],
@@ -25,9 +27,11 @@ export default function RootLayout({
       ></meta>
       <body>
         <ReduxProvider>
-          <ThemeProvider attribute="class">
-            <Layout>{children}</Layout>
-          </ThemeProvider>
+          <ChakraProvider>
+            <Web3modalprovider>
+              <Layout>{children}</Layout>
+            </Web3modalprovider>
+          </ChakraProvider>
         </ReduxProvider>
         <AnalyticsWrapper />
         <Script

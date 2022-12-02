@@ -6,8 +6,6 @@ export const HOME_TABS = [
   { name: "后端开发", key: "backend" },
 ];
 
-
+export const WALLET_CONNECT_PROJECT_ID = "40a754d7ff107e055b2dde256d851d53";
 //Web3常见库
-export const Web3Libs=[
-  {}
-]
+export const Web3Libs = [{}];

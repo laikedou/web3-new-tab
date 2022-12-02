@@ -88,10 +88,16 @@ const ScrollList = (props: PropsWithChildren<Props>) => {
                     >
                       <Image
                         src={assets.left}
-                        layout="fill"
-                        objectFit="contain"
+                        fill
+                        sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
                         alt="left_arrow"
-                        className={theme === "light" ? "filter invert" : ""}
+                        className={
+                          theme === "light"
+                            ? "filter invert object-contain"
+                            : "object-contain "
+                        }
                       />
                     </div>
                     <div
@@ -100,10 +106,16 @@ const ScrollList = (props: PropsWithChildren<Props>) => {
                     >
                       <Image
                         src={assets.right}
-                        layout="fill"
-                        objectFit="contain"
+                        fill
+                        sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
                         alt="right_arrow"
-                        className={theme === "light" ? "filter invert" : ""}
+                        className={
+                          theme === "light"
+                            ? "filter invert object-contain"
+                            : " object-contain"
+                        }
                       />
                     </div>
                   </>

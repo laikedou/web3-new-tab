@@ -18,7 +18,7 @@ const Footer = (props: Props) => {
             <Link href="/">
               <Image
                 src={assets.logo02}
-                objectFit="contain"
+                className="object-contain"
                 width={40}
                 height={40}
                 alt="logo"
@@ -142,8 +142,7 @@ const Footer = (props: Props) => {
               >
                 <Image
                   src={assets.github}
-                  objectFit="contain"
-                  className="cursor-pointer opacity-80 hover:opacity-100 hover:scale-105 transition duration-500"
+                  className=" object-contain cursor-pointer opacity-80 hover:opacity-100 hover:scale-105 transition duration-500"
                   width={24}
                   height={24}
                   alt="github"
@@ -157,8 +156,8 @@ const Footer = (props: Props) => {
               >
                 <Image
                   src={assets.twitter}
-                  objectFit="contain"
-                  className="cursor-pointer opacity-80 hover:opacity-100 hover:scale-105 transition duration-500"
+                 
+                  className="object-contain cursor-pointer opacity-80 hover:opacity-100 hover:scale-105 transition duration-500"
                   width={24}
                   height={24}
                   alt="twitter"
@@ -172,8 +171,8 @@ const Footer = (props: Props) => {
               >
                 <Image
                   src={assets.telegram}
-                  objectFit="contain"
-                  className="cursor-pointer opacity-80 hover:opacity-100 hover:scale-105 transition duration-500"
+                  
+                  className=" object-contain cursor-pointer opacity-80 hover:opacity-100 hover:scale-105 transition duration-500"
                   width={24}
                   height={24}
                   alt="telegram"
@@ -187,8 +186,8 @@ const Footer = (props: Props) => {
               >
                 <Image
                   src={assets.youtube}
-                  objectFit="contain"
-                  className="cursor-pointer opacity-80 hover:opacity-100 hover:scale-105 transition duration-500"
+                
+                  className=" object-contain cursor-pointer opacity-80 hover:opacity-100 hover:scale-105 transition duration-500"
                   width={24}
                   height={24}
                   alt="youtube"

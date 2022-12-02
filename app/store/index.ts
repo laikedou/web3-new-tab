@@ -4,13 +4,11 @@ import { setupListeners } from "@reduxjs/toolkit/query/react";
 import logger from "redux-logger";
 import { creatorsApi } from "../service/creators";
 import { nftsApi } from "../service/nfts";
+import reducers from "./reducers";
 
 //创建store
 const store = configureStore({
-  reducer: {
-    [creatorsApi.reducerPath]: creatorsApi.reducer,
-    [nftsApi.reducerPath]: nftsApi.reducer,
-  },
+  reducer: reducers,
   devTools: true,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(creatorsApi.middleware, nftsApi.middleware),

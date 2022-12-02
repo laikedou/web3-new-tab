@@ -25,10 +25,12 @@ const NFTCard = ({ nft, onProfilePage }: NFTCardProps) => {
       >
         <div className="relative w-full h-52 sm:h-36 minmd:h-60 minlg:h-300 rounded-2xl overflow-hidden">
           <Image
-            className="flex justify-center items-center hover:scale-110 transition-all duration-500"
+            className=" flex  justify-center items-center hover:scale-110 transition-all duration-500"
             src={nft?.image}
-            layout="fill"
-            objectFit="cover"
+            fill
+            sizes="(max-width: 768px) 100vw,
+              (max-width: 1200px) 50vw,
+              33vw"
             alt={`nft${nft?.i}`}
           />
         </div>

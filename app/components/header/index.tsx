@@ -1,18 +1,21 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import styles from "./styles.module.css";
 type Props = {};
 import Image from "next/image";
 import assets from "#/app/assets";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { useTheme } from "next-themes";
+import { useAccount } from "wagmi";
+import ConnectedBtn from "../connected/btn";
+import ConnectBtn from "../connected/connect";
+import { useColorMode } from "@chakra-ui/react";
 const Header = (props: Props) => {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+  const [domLoaded, setDomLoaded] = useState(false);
+  const { isConnected, address } = useAccount();
+  const { colorMode, toggleColorMode } = useColorMode();
   useEffect(() => {
-    setTheme("dark");
-    setMounted(true);
+    setDomLoaded(true);
   }, []);
 
   return (
@@ -37,7 +40,7 @@ const Header = (props: Props) => {
                 type="checkbox"
                 className={styles.checkbox}
                 id="checkbox"
-                onChange={() => setTheme(theme === "light" ? "dark" : "light")}
+                onChange={toggleColorMode}
               />
 
               <label htmlFor="checkbox" className={styles.label}>
@@ -60,17 +63,11 @@ const Header = (props: Props) => {
               <Link href={"/my-nfts"}>My NFTs</Link>
             </li>
             <li>
-              <Link href={"/create"}>
-                <motion.div
-                  whileHover={{
-                    scale: 1.1,
-                  }}
-                >
-                  <button className="gradient-btn-bg rounded-lg px-5 py-1 text-white">
-                    Create
-                  </button>
-                </motion.div>
-              </Link>
+              {domLoaded && (
+                <Suspense>
+                  {isConnected ? <ConnectedBtn /> : <ConnectBtn />}
+                </Suspense>
+              )}
             </li>
           </ul>
         </div>

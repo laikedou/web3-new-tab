@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.4.2",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@next/font": "^13.0.5",
     "@reduxjs/toolkit": "^1.9.0",
     "@sanity/client": "^3.4.1",
@@ -21,14 +24,14 @@
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.8",
     "@vercel/analytics": "^0.1.5",
-    "@web3modal/ethereum": "2.0.0-beta.3",
-    "@web3modal/react": "2.0.0-beta.3",
+    "@web3modal/ethereum": "^2.0.0-beta.7",
+    "@web3modal/react": "^2.0.0-beta.7",
     "axios": "^1.1.3",
     "eslint": "8.27.0",
     "eslint-config-next": "13.0.2",
-    "ethers": "^5.4.7",
+    "ethers": "^5.7.2",
     "formik": "^2.2.9",
-    "framer-motion": "^7.6.15",
+    "framer-motion": "^6",
     "json-form-data": "^1.7.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
@@ -48,7 +51,7 @@
     "server-only": "^0.0.1",
     "solc": "^0.8.17",
     "typescript": "4.8.4",
-    "wagmi": "^0.8.2",
+    "wagmi": "^0.8.9",
     "yup": "^0.32.11"
   },
   "resolutions": {

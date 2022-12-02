@@ -4,6 +4,13 @@ const nextConfig = {
   swcMinify: true,
   experimental: {
     appDir: true,
+    transpilePackages: [
+      "@web3modal/ethereum",
+      "@web3modal/react",
+      "@web3modal/ui",
+      "@web3modal/core",
+    ],
+
     fontLoaders: [
       { loader: "@next/font/google", options: { subsets: ["latin"] } },
     ],

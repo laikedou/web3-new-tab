@@ -57,7 +57,7 @@ const Header = (props: Props) => {
               <Link href={"/listed-nfts"}>Listed NFTs</Link>
             </li>
             <li>
-              <Link href={"/my-nfts"}>Listed NFTs</Link>
+              <Link href={"/my-nfts"}>My NFTs</Link>
             </li>
             <li>
               <Link href={"/create"}>

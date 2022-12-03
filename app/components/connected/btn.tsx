@@ -1,27 +1,116 @@
 "use client";
 import Link from "next/link";
-import React from "react";
-import { useAccount, useEnsAvatar } from "wagmi";
+import React, { useEffect, useState } from "react";
+import {
+  Menu,
+  MenuButton,
+  MenuGroup,
+  MenuList,
+  MenuItem,
+  Button,
+  Text,
+  useClipboard,
+  Select,
+} from "@chakra-ui/react";
+import {
+  useAccount,
+  useBalance,
+  useDisconnect,
+  useNetwork,
+  useSwitchNetwork,
+} from "wagmi";
+import truncateEthAddress from "#/app/utils";
+import { FiChevronDown } from "react-icons/fi";
+import { AiOutlineDisconnect } from "react-icons/ai";
+import { FaEthereum, FaCopy, FaWifi, FaCopyright } from "react-icons/fa";
+import Image from "next/image";
+import assets from "#/app/assets";
 
 type Props = {};
 
 const ConnectedBtn = (props: Props) => {
   const { address } = useAccount();
-  const { data, isError, isLoading } = useEnsAvatar({
+  const { disconnect } = useDisconnect();
+  const { data } = useBalance({
     address,
-    suspense: true,
   });
-
-  if (isLoading) return <div>Fetching name…</div>;
-  if (isError) return <div>Error fetching name</div>;
+  const { chain } = useNetwork();
+  const { chains, error, isLoading, pendingChainId, switchNetwork } =
+    useSwitchNetwork();
+  const { onCopy, value, setValue, hasCopied } = useClipboard("");
+  const [chainId, setChainId] = useState<number>();
+  useEffect(() => {
+    setChainId(chain?.id);
+  }, []);
   return (
     <div className="relative flex flex-row items-center">
-      <Link
-        href={"/create"}
-        className="gradient-btn-bg rounded-lg px-5 py-1 text-white"
+      <Menu
+        matchWidth={true}
+        autoSelect={true}
+        arrowPadding={0}
+        closeOnSelect={false}
+        isLazy={true}
       >
-        Create
-      </Link>
+        <MenuButton
+          padding={8}
+          as={Button}
+          leftIcon={<FaEthereum size={20} />}
+          rightIcon={
+            <div className="flex flex-row items-center">
+              <Image
+                src={assets.metamask}
+                width={30}
+                height={30}
+                alt="metamask"
+              />
+              <FiChevronDown />
+            </div>
+          }
+        >
+          <p>
+            {data?.formatted} {data?.symbol}
+          </p>
+          <p>
+            {address && truncateEthAddress(address)}({chain?.name})
+          </p>
+        </MenuButton>
+        <MenuList>
+          <MenuGroup title="Personal Wallet" rowGap={5}>
+            <MenuItem gap={2}>
+              {hasCopied ? <FaCopyright /> : <FaCopy />}
+              <Text onCopy={onCopy}>Copy wallet address</Text>
+            </MenuItem>
+            <MenuItem gap={2}>
+              <FaWifi />
+              <Select placeholder="Select Chain" value={chainId}>
+                {chains.map((chain) => (
+                  <option key={chain.id} value={chain.id}>
+                    {chain.name}
+                  </option>
+                ))}
+              </Select>
+            </MenuItem>
+            <MenuItem
+              gap={2}
+              onClick={() => {
+                disconnect();
+              }}
+            >
+              <AiOutlineDisconnect /> Disconnect
+            </MenuItem>
+          </MenuGroup>
+          <MenuGroup title="Mint NFTs" rowGap={5}>
+            <MenuItem>
+              <Link
+                href={"/create"}
+                className="gradient-btn-bg rounded-lg px-5 py-1 text-white"
+              >
+                Create
+              </Link>
+            </MenuItem>
+          </MenuGroup>
+        </MenuList>
+      </Menu>
     </div>
   );
 };

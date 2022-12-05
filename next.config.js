@@ -9,6 +9,7 @@ const nextConfig = {
       "@web3modal/react",
       "@web3modal/ui",
       "@web3modal/core",
+      "@chakra-ui/react",
     ],
 
     fontLoaders: [

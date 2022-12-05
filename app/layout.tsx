@@ -7,6 +7,7 @@ import Script from "next/script";
 import { ChakraProvider } from "@chakra-ui/react";
 import "./styles/globals.css";
 import Web3modalprovider from "./components/web3modalprovider";
+import theme from "./consts/theme";
 
 const lexend = Lexend({
   variable: "--font-lexend",
@@ -27,7 +28,7 @@ export default function RootLayout({
       ></meta>
       <body>
         <ReduxProvider>
-          <ChakraProvider>
+          <ChakraProvider theme={theme}>
             <Web3modalprovider>
               <Layout>{children}</Layout>
             </Web3modalprovider>

@@ -22,7 +22,13 @@ import {
 import truncateEthAddress from "#/app/utils";
 import { FiChevronDown } from "react-icons/fi";
 import { AiOutlineDisconnect } from "react-icons/ai";
-import { FaEthereum, FaCopy, FaWifi, FaCopyright } from "react-icons/fa";
+import {
+  FaEthereum,
+  FaCopy,
+  FaWifi,
+  FaCopyright,
+  FaCheck,
+} from "react-icons/fa";
 import Image from "next/image";
 import assets from "#/app/assets";
 
@@ -68,7 +74,7 @@ const ConnectedBtn = (props: Props) => {
           }
         >
           <p>
-            {data?.formatted} {data?.symbol}
+            {data?.formatted} {data?.symbol} {chain?.nativeCurrency?.symbol}
           </p>
           <p>
             {address && truncateEthAddress(address)}({chain?.name})
@@ -77,12 +83,12 @@ const ConnectedBtn = (props: Props) => {
         <MenuList>
           <MenuGroup title="Personal Wallet" rowGap={5}>
             <MenuItem gap={2}>
-              {hasCopied ? <FaCopyright /> : <FaCopy />}
-              <Text onCopy={onCopy}>Copy wallet address</Text>
+              {hasCopied ? <FaCopy /> : <FaCheck color="green" />}
+              <Text onClick={onCopy}>Copy wallet address</Text>
             </MenuItem>
             <MenuItem gap={2}>
               <FaWifi />
-              <Select placeholder="Select Chain" value={chainId}>
+              <Select placeholder="Select Chain Network" defaultValue={chainId}>
                 {chains.map((chain) => (
                   <option key={chain.id} value={chain.id}>
                     {chain.name}

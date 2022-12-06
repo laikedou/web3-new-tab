@@ -9,3 +9,5 @@ export const HOME_TABS = [
 export const WALLET_CONNECT_PROJECT_ID = "40a754d7ff107e055b2dde256d851d53";
 //Web3常见库
 export const Web3Libs = [{}];
+export const WEB_STORAGE_API_TOKEN =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJkaWQ6ZXRocjoweDc1NEYwNGFiNGFmQjU3NjY5YmMxOTNEODczMjBGYTI0Zjc2Yjk1NzYiLCJpc3MiOiJ3ZWIzLXN0b3JhZ2UiLCJpYXQiOjE2NzAyMjMyNjEyNzEsIm5hbWUiOiJ3ZWIzLW5ldy10YWIifQ.3-VhGiTt0IqBX_a2bqwvQQJIYyb5xYneNhJjuziS0fU";

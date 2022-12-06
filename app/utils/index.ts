@@ -43,3 +43,7 @@ const truncateEthAddress = (address: string) => {
 };
 
 export default truncateEthAddress;
+
+export function makeGatewayURL(cid: string, path: string) {
+  return `https://${cid}.ipfs.w3s.link/${encodeURIComponent(path)}`;
+}

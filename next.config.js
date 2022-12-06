@@ -18,6 +18,12 @@ const nextConfig = {
   },
   images: {
     domains: ["polyplace.infura-ipfs.io", "loremflickr.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "**.ipfs.w3s.link",
+      },
+    ],
   },
 };
 

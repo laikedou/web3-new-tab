@@ -2,14 +2,9 @@
 
 type Props = {};
 
-import ThirdWebProvider from "./provider";
 import Upload from "./upload";
 const UploadCom: React.FC<Props> = (props: Props) => {
-  return (
-    <ThirdWebProvider>
-      <Upload />
-    </ThirdWebProvider>
-  );
+  return <Upload />;
 };
 
 export default UploadCom;

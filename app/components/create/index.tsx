@@ -47,7 +47,7 @@ const Create: React.FC<Props> = (props: Props) => {
                 <FormLabel fontWeight={800} fontSize={25}>
                   Upload File
                 </FormLabel>
-
+                <Upload />
                 <FormErrorMessage>{form.errors.image}</FormErrorMessage>
               </FormControl>
             )}

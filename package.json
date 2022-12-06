@@ -15,9 +15,6 @@
     "@next/font": "^13.0.5",
     "@reduxjs/toolkit": "^1.9.0",
     "@sanity/client": "^3.4.1",
-    "@thirdweb-dev/react": "^3.6.6",
-    "@thirdweb-dev/sdk": "^3.6.6",
-    "@thirdweb-dev/storage": "^1.0.6",
     "@types/json-form-data": "^1.7.2",
     "@types/lodash": "^4.14.188",
     "@types/multer": "^1.4.7",
@@ -33,6 +30,7 @@
     "ethers": "^5.7.2",
     "formik": "^2.2.9",
     "framer-motion": "^6",
+    "ipfs-core": "^0.17.0",
     "json-form-data": "^1.7.2",
     "lodash": "^4.17.21",
     "moment": "^2.29.4",
@@ -54,6 +52,7 @@
     "solc": "^0.8.17",
     "typescript": "4.8.4",
     "wagmi": "^0.8.9",
+    "web3.storage": "^4.4.0",
     "yup": "^0.32.11"
   },
   "resolutions": {

@@ -2,7 +2,7 @@ type Props = {};
 import React, { useCallback, useState } from "react";
 import { FaImage } from "react-icons/fa";
 import { useDropzone } from "react-dropzone";
-import { Web3Storage, Web3File, Status } from "web3.storage";
+import { Web3Storage, Status } from "web3.storage";
 import { WEB_STORAGE_API_TOKEN } from "#/app/consts";
 import { Spinner, Box } from "@chakra-ui/react";
 import { Stack } from "@chakra-ui/react";
@@ -30,7 +30,6 @@ const Upload = (props: Props) => {
       // Pack files into a CAR and send to web3.storage
       const rootCid = await client.put(acceptedFiles, { maxRetries: 3 }); // Promise<CIDString>
       console.log("rootCid...", rootCid);
-
       // Get info on the Filecoin deals that the CID is stored in
       const info: Status = (await client.status(rootCid)) || {
         cid: "",
@@ -85,7 +84,8 @@ const Upload = (props: Props) => {
         >
           <Spinner size={"lg"}></Spinner>
         </Box>
-      ) : (
+      ) : null}
+      {files.length > 0 ? (
         <ChakraCarousel gap={32}>
           {files.map((file) => (
             <Image
@@ -97,7 +97,7 @@ const Upload = (props: Props) => {
             />
           ))}
         </ChakraCarousel>
-      )}
+      ) : null}
     </section>
   );
 };

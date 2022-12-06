@@ -8,7 +8,13 @@ type CreatorCardProps = {
   seller?: string;
   key?: string;
 };
-
+type StorageFile = {
+  cid: string;
+  metadataGatewayURL: string;
+  imageGatewayURL: string;
+  imageURI: string;
+  metadataURI: string;
+};
 type NftsProps = {
   i: string;
   price: number;

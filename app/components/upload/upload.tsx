@@ -1,5 +1,4 @@
-type Props = {};
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { FaImage } from "react-icons/fa";
 import { useDropzone } from "react-dropzone";
 import { Web3Storage, Status } from "web3.storage";
@@ -9,14 +8,12 @@ import { Stack } from "@chakra-ui/react";
 import Image from "next/image";
 import { makeGatewayURL } from "#/app/utils";
 import ChakraCarousel from "#/app/components/carousel";
-type StorageFile = {
-  cid: string;
-  metadataGatewayURL: string;
-  imageGatewayURL: string;
-  imageURI: string;
-  metadataURI: string;
+
+type Props = {
+  onchange: any;
 };
 const Upload = (props: Props) => {
+  const { onchange } = props;
   //设置上传标记
   const [uploading, setUploading] = useState(false);
   //files
@@ -60,6 +57,9 @@ const Upload = (props: Props) => {
       setUploading(false);
     }
   }, []);
+  useEffect(() => {
+    onchange && onchange(files);
+  }, [files]);
   const { getRootProps, getInputProps } = useDropzone({
     // Note how this callback is never invoked if drop occurs on the inner dropzone
     onDrop,

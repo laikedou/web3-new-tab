@@ -8,6 +8,7 @@ import { Spinner, Box } from "@chakra-ui/react";
 import { Stack } from "@chakra-ui/react";
 import Image from "next/image";
 import { makeGatewayURL } from "#/app/utils";
+import ChakraCarousel from "#/app/components/carousel";
 type StorageFile = {
   cid: string;
   metadataGatewayURL: string;
@@ -85,7 +86,7 @@ const Upload = (props: Props) => {
           <Spinner size={"lg"}></Spinner>
         </Box>
       ) : (
-        <Stack>
+        <ChakraCarousel gap={32}>
           {files.map((file) => (
             <Image
               key={file.cid}
@@ -95,7 +96,7 @@ const Upload = (props: Props) => {
               height={300}
             />
           ))}
-        </Stack>
+        </ChakraCarousel>
       )}
     </section>
   );

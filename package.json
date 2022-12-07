@@ -4,6 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev ",
+    "contract": "npx hardhat run tasks/deploy.js --network hardhat",
+    "deploy:contract": "npx hardhat deploy --network goerli ",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
@@ -13,6 +15,7 @@
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
     "@next/font": "^13.0.5",
+    "@openzeppelin/contracts": "^4.8.0",
     "@reduxjs/toolkit": "^1.9.0",
     "@sanity/client": "^3.4.1",
     "@types/json-form-data": "^1.7.2",
@@ -74,12 +77,14 @@
     "@types/redux-logger": "^3.0.9",
     "autoprefixer": "^10.4.13",
     "chai": "^4.2.0",
+    "dotenv": "^16.0.3",
     "encoding": "^0.1.13",
     "hardhat": "^2.11.1",
     "hardhat-gas-reporter": "^1.0.8",
     "postcss": "^8.4.18",
     "solidity-coverage": "^0.8.0",
     "tailwindcss": "^3.2.3",
-    "typechain": "^8.1.0"
+    "ts-node": "^10.9.1",
+    "typechain": "^8.1.1"
   }
 }

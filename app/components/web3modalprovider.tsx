@@ -11,7 +11,7 @@ import { Web3Modal } from "@web3modal/react";
 import { chain, configureChains, createClient, WagmiConfig } from "wagmi";
 import { WALLET_CONNECT_PROJECT_ID } from "../consts";
 
-const chains = [chain.mainnet, chain.polygon, chain.optimism, chain.arbitrum];
+const chains = [chain.mainnet, chain.polygon,chain.hardhat];
 
 // Wagmi client
 const { provider } = configureChains(chains, [

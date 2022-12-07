@@ -26,6 +26,6 @@
       }
     ]
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/styles.css", "app/components/carousel/index.jsx", "app/components/carousel/index.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "app/styles.css", "tasks/deploy.js", "app/components/carousel/index.jsx", "app/components/carousel/index.jsx", "tasks/deploy.js"],
   "exclude": ["node_modules"]
 }

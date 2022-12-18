@@ -14,5 +14,12 @@ export const WEB_STORAGE_API_TOKEN =
 
 import marketAbi from "./NFTMarketplace.json";
 
-export const MarketAddress = "0x5FbDB2315678afecb367f032d93F642f64180aa3";
+export const MarketAddress = "0x852F082E22342c32a486E5d1AD7760509092C3C5";
 export const MarketAddressABI = marketAbi.abi;
+
+//infru
+
+export const INFURA_API_KEY = "f7f63c073ac944ac91ee8d29e151e2d8";
+
+export const INFURA_IPFS_PROJECT_ID = "2J2FIzcEvJwxIjkWgTPduRfafVU";
+export const INFURA_IPFS_PROJECT_SECRET = "4627359059618db106664bced5e50c02";

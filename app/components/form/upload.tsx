@@ -13,16 +13,10 @@ const MyUpload = ({ field, form, ...props }: FieldProps) => {
   const error = errors[field.name] as string;
   const { value, ...rest } = field;
   const onchange = (files: StorageFile[]) => {
-    if (files) {
-      try {
-        const file = files[0];
-        console.log(file);
-        if (file) {
-          setFieldValue(field.name, file.imageGatewayURL);
-        }
-      } catch (error) {
-        console.log(error);
-      }
+    try {
+      setFieldValue(field.name, files);
+    } catch (error) {
+      console.log(error);
     }
   };
   return (

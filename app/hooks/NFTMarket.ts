@@ -17,8 +17,7 @@ export default function useNftMarket() {
     signer,
     address: MarketAddress,
     abi: MarketAddressABI,
-    functionName: "createToken",
-    args: ["url", 2],
+    functionName: "fetchMyNFTs",
   });
   const {
     data,

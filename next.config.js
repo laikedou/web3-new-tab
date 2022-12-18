@@ -4,14 +4,7 @@ const nextConfig = {
   swcMinify: true,
   experimental: {
     appDir: true,
-    transpilePackages: [
-      "@web3modal/ethereum",
-      "@web3modal/react",
-      "@web3modal/ui",
-      "@web3modal/core",
-      "@chakra-ui/react",
-    ],
-
+    transpilePackages: ["@chakra-ui/react", "ipfs-http-client"],
     fontLoaders: [
       { loader: "@next/font/google", options: { subsets: ["latin"] } },
     ],
@@ -21,9 +14,12 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "**.ipfs.w3s.link",
+        hostname: "**.infura-ipfs.io",
       },
     ],
+  },
+  webpack: (config, { isServer }) => {
+    return config;
   },
 };
 

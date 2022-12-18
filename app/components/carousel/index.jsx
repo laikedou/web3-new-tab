@@ -344,7 +344,12 @@ const Track = ({
   return (
     <>
       {itemWidth && (
-        <VStack ref={node} spacing={5} alignItems="stretch">
+        <VStack
+          ref={node}
+          spacing={5}
+          alignItems="stretch"
+          justifyContent={"center"}
+        >
           <MotionFlex
             dragConstraints={node}
             onDragStart={handleDragStart}
@@ -356,6 +361,7 @@ const Track = ({
             minWidth="min-content"
             flexWrap="nowrap"
             cursor="grab"
+            justifyContent="center"
           >
             {children}
           </MotionFlex>

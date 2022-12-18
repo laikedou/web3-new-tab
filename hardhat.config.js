@@ -18,7 +18,11 @@ const config = {
   },
   networks: {
     hardhat: {
-      chainId: 1337,
+      chainId: 31337,
+    },
+    localhost: {
+      url: "http://localhost:8545",
+      chainId: 31337,
     },
     goerli: {
       url: process.env.GOERLI_URL,

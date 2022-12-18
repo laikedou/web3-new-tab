@@ -47,7 +47,7 @@ const ConnectedBtn = (props: Props) => {
   const [chainId, setChainId] = useState<number>();
   useEffect(() => {
     setChainId(chain?.id);
-  }, []);
+  }, [chain]);
   return (
     <div className="relative flex flex-row items-center">
       <Menu

@@ -16,7 +16,7 @@ import {
     value: string;
   };
   const MyProperties = ({ field, form, ...props }: FieldProps) => {
-    const { value } = field;
+    const { value,onChange } = field;
     //console.log(error);
     return (
       <Box my={10}>

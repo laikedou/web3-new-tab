@@ -1,12 +1,14 @@
+"use client";
 import React, { useCallback, useEffect, useState } from "react";
 import { FaImage } from "react-icons/fa";
 import { useDropzone } from "react-dropzone";
-import { Web3Storage, Status } from "web3.storage";
-import { WEB_STORAGE_API_TOKEN } from "#/app/consts";
+import { create } from "ipfs-http-client";
+import {
+  INFURA_IPFS_PROJECT_ID,
+  INFURA_IPFS_PROJECT_SECRET,
+} from "#/app/consts";
 import { Spinner, Box } from "@chakra-ui/react";
-import { Stack } from "@chakra-ui/react";
 import Image from "next/image";
-import { makeGatewayURL } from "#/app/utils";
 import ChakraCarousel from "#/app/components/carousel";
 
 type Props = {
@@ -17,40 +19,62 @@ const Upload = (props: Props) => {
   //设置上传标记
   const [uploading, setUploading] = useState(false);
   //files
-  const [files, setFiles] = useState<StorageFile[]>([]);
+  const [files, setFiles] = useState<
+    {
+      cid: string;
+      url: string;
+    }[]
+  >([]);
   // Construct with token and endpoint
-  const client = new Web3Storage({ token: WEB_STORAGE_API_TOKEN });
+
+  const auth =
+    "Basic " +
+    Buffer.from(
+      INFURA_IPFS_PROJECT_ID + ":" + INFURA_IPFS_PROJECT_SECRET
+    ).toString("base64");
+  const client = create({
+    host: "ipfs.infura.io",
+    port: 5001,
+    protocol: "https",
+    headers: {
+      authorization: auth,
+    },
+  });
   const onDrop = useCallback(async (acceptedFiles: File[] = []) => {
     console.log("acceptedFiles", acceptedFiles);
     setUploading(true);
     try {
-      // Pack files into a CAR and send to web3.storage
-      const rootCid = await client.put(acceptedFiles, { maxRetries: 3 }); // Promise<CIDString>
-      console.log("rootCid...", rootCid);
-      // Get info on the Filecoin deals that the CID is stored in
-      const info: Status = (await client.status(rootCid)) || {
-        cid: "",
-        created: "",
-        dagSize: 0,
-        deals: [],
-        pins: [],
-      }; // Promise<Status | undefined>
-      console.log(`${info.cid} ${info.dagSize} ${info.created}`);
-      const storages = [];
-      for (const file of acceptedFiles) {
-        const metadataGatewayURL = makeGatewayURL(rootCid, "metadata.json");
-        const imageGatewayURL = makeGatewayURL(rootCid, file.name);
-        const imageURI = `ipfs://${rootCid}/${file.name}`;
-        const metadataURI = `ipfs://${rootCid}/metadata.json`;
-        storages.push({
-          cid: rootCid,
-          metadataGatewayURL,
-          imageGatewayURL,
-          imageURI,
-          metadataURI,
+      const options = {
+        wrapWithDirectory: true,
+        progress: (prog: number) => console.log(`received: ${prog}`),
+      };
+
+      for (let i = 0; i < acceptedFiles.length; i++) {
+        const file = acceptedFiles[i];
+        const fileDetails = {
+          path: file.name,
+          content: file,
+        };
+        const added = await client.add(fileDetails, options);
+
+        console.log(
+          `https://photography.infura-ipfs.io/ipfs/${added.cid.toString()}/${encodeURIComponent(
+            file.name
+          )}`
+        );
+        setFiles((f) => {
+          return [
+            ...f,
+            {
+              cid: added.cid.toString(),
+              url: `https://photography.infura-ipfs.io/ipfs/${added.cid.toString()}/${encodeURIComponent(
+                file.name
+              )}`,
+            },
+          ];
         });
       }
-      setFiles(storages);
+
       setUploading(false);
     } catch (error) {
       console.log("error", error);
@@ -67,8 +91,8 @@ const Upload = (props: Props) => {
   return (
     <section className="relative border cursor-pointer border-white border-dotted p-3 font-bold flex flex-col items-center justify-center">
       <h1 className="text-2xl">JPG, PNG, GIF, SVG, WEBM Max 100mb.</h1>
-      <p>
-        <FaImage size={250} {...getRootProps({ className: "dropzone" })} />
+      <p {...getRootProps({ className: "dropzone" })}>
+        <FaImage size={250} />
       </p>
       <h2> Drag and Drop File, or Browse media on your device.</h2>
       <input {...getInputProps()} />
@@ -91,9 +115,13 @@ const Upload = (props: Props) => {
             <Image
               key={file.cid}
               alt=""
-              src={file.imageGatewayURL}
+              src={file.url}
               width={300}
               height={300}
+              loading={"lazy"}
+              style={{
+                objectFit: "cover",
+              }}
             />
           ))}
         </ChakraCarousel>

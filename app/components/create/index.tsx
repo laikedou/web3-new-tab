@@ -1,20 +1,21 @@
 // 用于上传的公共组件支持 单文件以及批量上传后期还会支持解析xlsx文件进行上传
-import React from "react";
+import React, { useEffect } from "react";
 import { Field, Form, Formik } from "formik";
-import { Button, Flex } from "@chakra-ui/react";
+import { Button, Flex, VStack } from "@chakra-ui/react";
 import * as Yup from "yup";
 import MyInput from "../form/Input";
 import MyUpload from "../form/upload";
 import MyInputNumber from "../form/inputnumber";
 import MyTextArea from "../form/textarea";
 import useNftMarket from "#/app/hooks/NFTMarket";
-import { useContractRead, useSigner } from "wagmi";
+import { ethers } from "ethers";
+import { useContract, useContractRead, useProvider, useSigner } from "wagmi";
 import { MarketAddress, MarketAddressABI } from "#/app/consts";
 type Props = {};
 
 const Create: React.FC<Props> = (props: Props) => {
   const SignupSchema = Yup.object().shape({
-    image: Yup.string().required("Required"),
+    image: Yup.array().required("Required"),
     name: Yup.string()
       .min(2, "Too Short!")
       .max(50, "Too Long!")
@@ -25,19 +26,37 @@ const Create: React.FC<Props> = (props: Props) => {
       .required("Required"),
     price: Yup.number().required("Required"),
   });
+  const provider = useProvider();
   const { data: signer } = useSigner();
-  const { data: listingPrice } = useContractRead({
+
+  const contract = useContract({
     address: MarketAddress,
     abi: MarketAddressABI,
-    functionName: "getListingPrice",
+    signerOrProvider: signer,
   });
+
+  const getNfts = async () => {
+    const data = await contract?.fetchMyNFTs();
+    console.log("nfts.....", data);
+  };
+  const createNft = async () => {
+    const price = ethers.utils.parseUnits("1", "ether");
+    const listingPrice = await contract?.getListingPrice();
+    const data = await contract?.createToken("htts://www.baidu.com", price, {
+      value: listingPrice.toString(),
+    });
+  };
 
   //use nft contract hooks
   const { CreateNft } = useNftMarket();
 
   return (
     <>
-      listingPrice:{listingPrice}
+      <Button onClick={getNfts}>GetMyNfts</Button>
+
+      <VStack>
+        <Button onClick={createNft}>Create Nft</Button>
+      </VStack>
       <Formik
         initialValues={{ image: "", name: "", description: "", price: 0 }}
         onSubmit={(values, actions) => {

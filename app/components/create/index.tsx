@@ -1,3 +1,4 @@
+"use client";
 // 用于上传的公共组件支持 单文件以及批量上传后期还会支持解析xlsx文件进行上传
 import React, { useEffect } from "react";
 import { Field, Form, Formik } from "formik";

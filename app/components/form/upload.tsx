@@ -5,8 +5,13 @@ import {
   FormLabel,
 } from "@chakra-ui/react";
 import { FieldProps } from "formik";
+import dynamic from "next/dynamic";
 import React from "react";
-import Upload from "../upload/upload";
+
+const Upload = dynamic(() => import("../upload/upload"), {
+  suspense: true,
+  ssr: false,
+});
 
 const MyUpload = ({ field, form, ...props }: FieldProps) => {
   const { errors, touched, setFieldValue } = form;

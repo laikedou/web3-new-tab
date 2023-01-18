@@ -25,11 +25,12 @@ const handler = nc<NextApiRequest, NextApiResponse>();
 handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
   console.log("get method req.query", req.query, typeof req.query);
   const { contents } = req.query;
-  //进行海报的绘制功能 如果在客户端生成其实很慢还有兼容性问题他
-  const canvas = createCanvas(WIDTH, HEIGHT);
-  const ctx = canvas.getContext("2d");
+
   //先生成qrcode
   try {
+    //进行海报的绘制功能 如果在客户端生成其实很慢还有兼容性问题他
+    const canvas = createCanvas(WIDTH, HEIGHT);
+    const ctx = canvas.getContext("2d");
     //基础背景黑色
     ctx.fillStyle = "#000000";
     ctx.fillRect(0, 0, WIDTH, HEIGHT);

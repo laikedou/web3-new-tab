@@ -112,6 +112,7 @@ handler.get(async (req: NextApiRequest, res: NextApiResponse) => {
     res.send(buffer);
   } catch (err) {
     console.error(err);
+    res.send(err);
   }
 });
 export default handler;

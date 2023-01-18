@@ -6,7 +6,7 @@
     "dev": "next dev ",
     "contract": "npx hardhat run tasks/deploy.js --network goerli",
     "deploy:contract": "npx hardhat deploy --network goerli ",
-    "build": "next build",
+    "build": "yum install libuuid-devel libmount-devel && cp /lib64/{libuuid,libmount,libblkid}.so.1 node_modules/canvas/build/Release/ && next build",
     "start": "next start",
     "lint": "next lint"
   },
